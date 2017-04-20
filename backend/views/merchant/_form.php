@@ -39,8 +39,8 @@ if (!$merchant->isNewRecord) {
                         //'enableClientValidation'=>true,
                         'validationUrl' => \yii\helpers\Url::toRoute($validationUrl),
                         'fieldConfig' => [
-                            'template' => "{label}\n<div class=\"col-sm-8\">{input}</div>\n<div class=\"col-sm-3\">{error}</div>",
-                            'labelOptions' => ['class' => 'col-sm-1 control-label'],
+                            'template' => "{label}\n<div class=\"col-sm-7\">{input}</div>\n<div class=\"col-sm-3\">{error}</div>",
+                            'labelOptions' => ['class' => 'col-sm-2 control-label'],
                         ]
                     ]); ?>
 
@@ -57,7 +57,7 @@ if (!$merchant->isNewRecord) {
                                 <?= $form->field($user, 'username')->textInput(['maxlength' => true])->label('商户账号') ?>
                                 <?= $form->field($user, 'email')->textInput(['maxlength' => true])->label('Email') ?>
                                 <?= $form->field($merchant, 'password')->passwordInput(['maxlength' => true])?>
-
+                                <?= $form->field($merchant, 'confirmPassword')->passwordInput(['maxlength' => true])->label('重复密码')?>
                                 <?= $form->field($merchant, 'name')->textInput(['maxlength' => true]) ?>
                                 <?= $form->field($merchant, 'contactor')->textInput(['maxlength' => true]) ?>
 
@@ -66,22 +66,22 @@ if (!$merchant->isNewRecord) {
                                     'url' => $url,
                                     'province' => [
                                         'attribute' => 'prov',
-                                        'items' => Region::getRegion(),
-                                        'options' => ['class' => 'form-control form-control-inline', 'style' => 'width:354px; display:inline-block', 'prompt' => '选择省份']
+                                        'items' => Region::getRegion(1),
+                                        'options' => ['class' => 'form-control form-control-inline', 'style' => 'width:300px; display:inline-block', 'prompt' => '选择省份']
                                     ],
                                     'city' => [
                                         'attribute' => 'city',
                                         'items' => Region::getRegion($merchant['prov']),
-                                        'options' => ['class' => 'form-control form-control-inline', 'style' => 'width:354px; display:inline-block', 'prompt' => '选择城市']
+                                        'options' => ['class' => 'form-control form-control-inline', 'style' => 'width:300px; display:inline-block', 'prompt' => '选择城市']
                                     ],
                                     'district' => [
                                         'attribute' => 'dist',
                                         'items' => Region::getRegion($merchant['city']),
-                                        'options' => ['class' => 'form-control form-control-inline', 'style' => 'width:355px; display:inline-block', 'prompt' => '选择县/区']
+                                        'options' => ['class' => 'form-control form-control-inline', 'style' => 'width:300px; display:inline-block', 'prompt' => '选择县/区']
                                     ]
                                 ])->label('所在省市地区') ?>
 
-                                <?= $form->field($merchant, 'adress')->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($merchant, 'address')->textInput(['maxlength' => true]) ?>
                                 <?= $form->field($merchant, 'category_id')->dropDownList(['个体' => '个体', '公司' => '公司',], ['prompt' => '请选择经营主体...']) ?>
 
                                 <?= $form->field($merchant, 'weixinpubid')->textInput(['maxlength' => true]) ?>
@@ -95,7 +95,6 @@ if (!$merchant->isNewRecord) {
                                 <?= $form->field($merchant, 'pic')->fileInput() ?>
                                 <?= $form->field($merchant, 'pic1')->fileInput() ?>
                                 <?= $form->field($merchant, 'openlicences')->fileInput() ?>
-                                <?= $form->field($merchant, 'actived_at')->textInput() ?>
 
                                 <?= $form->field($merchant, 'actived_code')->textInput(['maxlength' => true]) ?>
 

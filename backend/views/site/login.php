@@ -6,11 +6,11 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
-$this->title = 'Sign In';
+$this->title = '账号登录';
 
 $fieldOptions1 = [
     'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
+    'inputTemplate' => "{input}<span class='glyphicon glyphicon-user glyphicon-envelope form-control-feedback'></span>"
 ];
 
 $fieldOptions2 = [
@@ -20,19 +20,17 @@ $fieldOptions2 = [
 ?>
 
 <div class="login-box">
-    <div class="login-logo">
-        <a href="#"><b>Admin</b><?=Yii::$app->params['applicationName']?></a>
-    </div>
+
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">登录后开始管理</p>
+        <h3><p class="login-box-msg  ">账号登录</p></h3>
 
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
         <?= $form
             ->field($model, 'username', $fieldOptions1)
             ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('账户名称')]) ?>
+            ->textInput(['placeholder' => $model->getAttributeLabel('商户账号')]) ?>
 
         <?= $form
             ->field($model, 'password', $fieldOptions2)
@@ -53,20 +51,13 @@ $fieldOptions2 = [
 
 
         <?php ActiveForm::end(); ?>
-<!--
-        <div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
-                using Facebook</a>
-            <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign
-                in using Google+</a>
-        </div>
-        -->
+
         <!-- /.social-auth-links -->
-
-        <a href="#">忘记密码</a><br>
-        <a href="register.html" class="text-center">注册商户账号</a>
-
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-xs-12"><a href="#">忘记密码?</a>
+                <a href="register" class="text-center">注册商户</a></div>
+        </div>
+        <div class="row"><div class="col-xs-6">&copy;2017-2020</div></div>
     </div>
     <!-- /.login-box-body -->
 </div><!-- /.login-box -->

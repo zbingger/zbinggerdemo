@@ -9,19 +9,17 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
-    public $css = [
-        'css/site.css',
-        //'css/zbingreset.css',
-        'http://cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css',
-        'https://almsaeedstudio.com/themes/AdminLTE/plugins/morris/morris.css',
-    ];
+    public $sourcePath = '@vendor/almasaeed2010/adminlte';
     public $js = [
-        'js/common.js',
+
+        // more plugin Js here
+    ];
+    public $css = [
+        'bootstrap/css/bootstrap.css',
+        '/css/zbingreset.css',
+        // more plugin CSS here
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'dmstr\web\AdminLteAsset',
     ];
 }

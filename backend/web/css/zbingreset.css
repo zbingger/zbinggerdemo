@@ -1,3 +1,5 @@
-.content-header>.breadcrumb {
-
+.breadcrumb {
+ margin-bottom: 0;
 }
+.content{ padding:0 15px}
+.pagination{margin: 0}

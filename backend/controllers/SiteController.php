@@ -1,17 +1,23 @@
 <?php
+
 namespace backend\controllers;
 
-use Yii;
+use yii;
+
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use backend\models\RegisterForm;
+use \backend\models\Region;
 
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+    public $layout = 'main';
+
     /**
      * @inheritdoc
      */
@@ -22,7 +28,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login','get-region', 'register','add','error'],
                         'allow' => true,
                     ],
                     [
@@ -46,11 +52,22 @@ class SiteController extends Controller
      */
     public function actions()
     {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+
+        $actions = parent::actions();
+
+        $actions['get-region'] = [
+            'class' => \chenkby\region\RegionAction::className(),
+            'model' => Region::className(),
+
         ];
+        $actions['error'] = ['class' => 'yii\web\ErrorAction',];
+        return $actions;
+        /* return [
+             'error' => [
+                 'class' => 'yii\web\ErrorAction',
+             ],
+         ];
+        */
     }
 
     /**
@@ -84,6 +101,33 @@ class SiteController extends Controller
         }
     }
 
+    public function actionRegister()
+    {
+        $this->layout = 'main-login';
+        $model = new RegisterForm();
+        $model->category_id ='个体';
+
+        return $this->render('register', [
+            'model' => $model,
+        ]);
+    }
+    public function actionAdd(){
+        $this->layout = 'main-login';
+        $model = new RegisterForm();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->pic1= yii\web\UploadedFile::getInstance($model,'pic1');
+            $model->pic= yii\web\UploadedFile::getInstance($model,'pic');
+            $model->openlicences= yii\web\UploadedFile::getInstance($model,'openlicences');
+            $model->lisences= yii\web\UploadedFile::getInstance($model,'lisences');
+            if($model->Register()){
+                Yii::$app->session->setFlash('regmessages','注册成功！');
+                $this->redirect(['site/register']);
+            }
+        }
+        return $this->render('register', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Logout action.
      *

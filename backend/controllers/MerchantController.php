@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\User;
 use \backend\models\Region;
+use yii\web\UploadedFile;
 
 /**
  * MerchantController implements the CRUD actions for Merchant model.
@@ -56,7 +57,7 @@ class MerchantController extends Controller
     {
         $searchModel = new MerchantSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        //$dataProvider->pagination->defaultPageSize =2;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider
@@ -88,10 +89,17 @@ class MerchantController extends Controller
         $merchant->setScenario('add');
         $merchant->loadDefaultValues();
         if ($user->load(Yii::$app->request->post()) && $merchant->load(Yii::$app->request->post())) {
+            //var_dump($merchant->weixinsellerid);exit;
+            $merchant->pic = UploadedFile::getInstance($merchant, 'pic');
+            $merchant->pic1 = UploadedFile::getInstance($merchant, 'pic1');
+            $merchant->lisences = UploadedFile::getInstance($merchant, 'lisences');
+            $merchant->openlicences = UploadedFile::getInstance($merchant, 'openlicences');
+
             $isValid = $user->validate();
             $isValid = $merchant->validate() && $isValid;
+
             if ($isValid) {
-                $user->setPassword($merchant->password);
+                $user->setPassword($merchant->confirmPassword);
                 $user->generateAuthKey();
                 $user->save(false);
                 $merchant->uid = $user->id;

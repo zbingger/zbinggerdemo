@@ -12,16 +12,17 @@ use common\traits\UploadImgTrait;
  * @property integer $id
  * @property integer $uid
  * @property string $name
- * @property integer $actived_at
+ * @property string $password
+ * @property string $actived_at
  * @property string $actived_code
  * @property double $weixin_rate
  * @property double $alipay_rate
  * @property string $category_id
  * @property string $contactor
- * @property string $prov
- * @property string $city
- * @property string $dist
- * @property string $adress
+ * @property integer $prov
+ * @property integer $city
+ * @property integer $dist
+ * @property string $address
  * @property string $weixinpubid
  * @property string $weixinsellerid
  * @property string $lisences
@@ -37,7 +38,7 @@ use common\traits\UploadImgTrait;
  */
 class Merchant extends \yii\db\ActiveRecord
 {
-
+    public  $confirmPassword;
     use UploadImgTrait;
     /**
      * @return array
@@ -45,10 +46,10 @@ class Merchant extends \yii\db\ActiveRecord
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios['add'] = ['name', 'password','contactor', 'prov', 'city', 'dist', 'adress',];
-        $scenarios['register'] = [ 'name', 'password', 'contactor', 'prov', 'city', 'dist', 'adress', 'lisences', 'pic', 'pic1', 'openlicences']; //注册
-        $scenarios['single-save'] = ['name', 'password', 'contactor', 'prov', 'city', 'dist', 'adress']; //个人资料修改
-        $scenarios['update']= [ 'name','password', 'contactor', 'prov', 'city', 'dist', 'adress',];
+        $scenarios['add'] = ['name', 'password','confirmPassword','contactor', 'prov', 'city', 'dist', 'address','weixinpubid', 'weixinsellerid','pic', 'pic1', 'openlicences', 'lisences'];
+        $scenarios['register'] = ['name', 'password', 'contactor', 'prov', 'city', 'dist', 'address', 'lisences', 'pic', 'pic1', 'openlicences']; //注册
+        $scenarios['single-save'] = ['name', 'password', 'contactor', 'prov', 'city', 'dist', 'address']; //个人资料修改
+        $scenarios['update']= [ 'name','password', 'contactor', 'prov', 'city', 'dist', 'address',];
         return $scenarios;
     }
     /**
@@ -65,17 +66,18 @@ class Merchant extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['uid', 'password','name', 'contactor', 'prov', 'city', 'dist', 'adress', 'lisences', 'pic', 'pic1', 'openlicences'], 'required',],
-            [['uid', 'actived_at'], 'integer'],
+            [['uid', 'password','confirmPassword','name', 'contactor','address', ], 'required',],
+            [['prov','city', 'dist',], 'integer'],
             ['password','string','min'=>6,'on'=>['add','update']],
+            ['confirmPassword', 'compare', 'compareAttribute' => 'password', 'operator' => '===', 'message'=>'再次输入密码不一致!', 'on'=>['add',]],
             [['weixin_rate', 'alipay_rate'], 'number'],
             [['category_id', 'status_acount', 'status_wxpay', 'status_wxpub', 'status_alipay'], 'string'],
-            [['name'], 'string', 'max' => 255],
+
             [['actived_code'], 'string', 'max' => 6],
-            [['contactor','prov','city', 'dist'], 'string', 'max' => 50 ,'on'=>['add','register']],
-            [['adress', 'weixinpubid', 'weixinsellerid',], 'string', 'max' => 250],
-            [['pic', 'pic1', 'openlicences', 'lisences'], 'safe', 'on'=>['add','update']],
-            //[['pic', 'pic1', 'openlicences', 'lisences'], 'file', 'extensions' => 'jpg,png', 'skipOnEmpty' => false,'on'=>['add',]],
+            [['contactor','name','address',], 'string', 'max' => 50 ,'on'=>['add','register']],
+            [[ 'weixinpubid', 'weixinsellerid',], 'string', 'max' => 250,],
+            //[['pic', 'pic1', 'openlicences', 'lisences'], 'safe', 'on'=>['add','update']],
+            [['pic', 'pic1', 'openlicences', 'lisences'], 'image', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024 * 1024 * 5, 'minWidth' => 100, 'maxWidth' => 1000, 'minHeight' => 100, 'maxHeight' => 1000,'skipOnEmpty' => false,'on'=>['add',]],
             [['uid'], 'unique'],
             [['uid'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['uid' => 'id']],
         ];
@@ -90,6 +92,7 @@ class Merchant extends \yii\db\ActiveRecord
             'id' => '主键',
             'uid' => 'uid',
             'password'=>'登录密码',
+            'confirmPassword'=>'重复密码',
             'name' => '商户名称',
             'actived_at' => '开通时间',
             'actived_code' => '激活码',
@@ -100,7 +103,7 @@ class Merchant extends \yii\db\ActiveRecord
             'prov' => '省',
             'city' => '市',
             'dist' => '区',
-            'adress' => '联系地址',
+            'address' => '联系地址',
             'weixinpubid' => '微信公众号id',
             'weixinsellerid' => '微信商户号id',
             'lisences' => '营业执照',

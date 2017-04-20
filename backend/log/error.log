@@ -4374,3 +4374,35 @@ Stack trace:
 #2 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(328): require('/home/masterpc/...')
 #3 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(250): yii\base\View->renderPhpFile('/home/masterpc/...', Array)
 #4 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php(253): yii\base\View->renderFile('@yii/views/erro...', Array, Object(yii\web\Er" while reading response header from upstream, client: 127.0.0.1, server: ad.yiibackend.com, request: "GET /machine/index HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "ad.yiibackend.com"
+2017/04/19 08:00:56 [error] 2289#2289: *239 FastCGI sent in stderr: "PHP message: An Error occurred while handling another error:
+exception 'ReflectionException' with message 'Method backend\models\RegisterForm::backend\models\{closure}() does not exist' in /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php:199
+Stack trace:
+#0 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php(199): ReflectionMethod->__construct('backend\\models\\...', 'backend\\models\\...')
+#1 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/views/errorHandler/callStackItem.php(26): yii\web\ErrorHandler->addTypeLinks('backend\\models\\...')
+#2 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(328): require('/home/masterpc/...')
+#3 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(250): yii\base\View->renderPhpFile('/home/masterpc/...', Array)
+#4 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php(253): yii\base\View->renderFile('" while reading response header from upstream, client: 127.0.0.1, server: ad.yiibackend.com, request: "POST /site/add HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "ad.yiibackend.com", referrer: "http://ad.yiibackend.com/site/add"
+2017/04/19 08:01:30 [error] 2289#2289: *239 FastCGI sent in stderr: "PHP message: An Error occurred while handling another error:
+exception 'ReflectionException' with message 'Method backend\models\RegisterForm::backend\models\{closure}() does not exist' in /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php:199
+Stack trace:
+#0 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php(199): ReflectionMethod->__construct('backend\\models\\...', 'backend\\models\\...')
+#1 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/views/errorHandler/callStackItem.php(26): yii\web\ErrorHandler->addTypeLinks('backend\\models\\...')
+#2 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(328): require('/home/masterpc/...')
+#3 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(250): yii\base\View->renderPhpFile('/home/masterpc/...', Array)
+#4 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php(253): yii\base\View->renderFile('" while reading response header from upstream, client: 127.0.0.1, server: ad.yiibackend.com, request: "POST /site/add HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "ad.yiibackend.com", referrer: "http://ad.yiibackend.com/site/add"
+2017/04/19 08:11:51 [error] 2289#2289: *308 FastCGI sent in stderr: "PHP message: An Error occurred while handling another error:
+exception 'ReflectionException' with message 'Method backend\models\RegisterForm::backend\models\{closure}() does not exist' in /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php:199
+Stack trace:
+#0 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php(199): ReflectionMethod->__construct('backend\\models\\...', 'backend\\models\\...')
+#1 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/views/errorHandler/callStackItem.php(26): yii\web\ErrorHandler->addTypeLinks('backend\\models\\...')
+#2 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(328): require('/home/masterpc/...')
+#3 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(250): yii\base\View->renderPhpFile('/home/masterpc/...', Array)
+#4 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php(253): yii\base\View->renderFile('" while reading response header from upstream, client: 127.0.0.1, server: ad.yiibackend.com, request: "POST /site/add HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "ad.yiibackend.com", referrer: "http://ad.yiibackend.com/site/add"
+2017/04/19 08:13:13 [error] 2289#2289: *310 FastCGI sent in stderr: "PHP message: An Error occurred while handling another error:
+exception 'ReflectionException' with message 'Method backend\models\RegisterForm::backend\models\{closure}() does not exist' in /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php:199
+Stack trace:
+#0 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php(199): ReflectionMethod->__construct('backend\\models\\...', 'backend\\models\\...')
+#1 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/views/errorHandler/callStackItem.php(26): yii\web\ErrorHandler->addTypeLinks('backend\\models\\...')
+#2 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(328): require('/home/masterpc/...')
+#3 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/base/View.php(250): yii\base\View->renderPhpFile('/home/masterpc/...', Array)
+#4 /home/masterpc/public_html/yii2-app-advanced/vendor/yiisoft/yii2/web/ErrorHandler.php(253): yii\base\View->renderFile('" while reading response header from upstream, client: 127.0.0.1, server: ad.yiibackend.com, request: "POST /site/add HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "ad.yiibackend.com", referrer: "http://ad.yiibackend.com/site/add"

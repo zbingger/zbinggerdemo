@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'prov',
                             'city',
                             'dist',
-                            'adress',
+                            'address',
                             'weixinpubid',
                             'weixinsellerid',
                             [

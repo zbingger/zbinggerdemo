@@ -13,6 +13,7 @@ use backend\models\Merchant;
 class MerchantSearch extends Merchant
 {
     public $username; //<=====就是加在这里
+    public $email;
     /**
      * @inheritdoc
      */
@@ -20,7 +21,7 @@ class MerchantSearch extends Merchant
     {
         return [
             [['id', 'uid', 'actived_at'], 'integer'],
-            [['username','name', 'actived_code', 'category_id', 'contactor', 'prov', 'city', 'dist', 'adress', 'weixinpubid', 'weixinsellerid', 'lisences', 'pic', 'pic1', 'openlicences', 'status_acount', 'status_wxpay', 'status_wxpub', 'status_alipay'], 'safe'],
+            [['username','email','name', 'actived_code', 'category_id', 'contactor', 'prov', 'city', 'dist', 'address', 'weixinpubid', 'weixinsellerid', 'lisences', 'pic', 'pic1', 'openlicences', 'status_acount', 'status_wxpay', 'status_wxpub', 'status_alipay'], 'safe'],
             [['weixin_rate', 'alipay_rate'], 'number'],
         ];
     }
@@ -53,6 +54,7 @@ class MerchantSearch extends Merchant
         ]);
         $dataProvider->setSort([
             'attributes' => [
+
                 /* 其它字段不要动 */
                 /*  下面这段是加入的 */
                 /*=============*/
@@ -60,6 +62,11 @@ class MerchantSearch extends Merchant
                     'asc' => ['user.username' => SORT_ASC],
                     'desc' => ['user.username' => SORT_DESC],
                     'label' => '商户账号'
+                ],
+                'email' => [
+                    'asc' => ['user.email' => SORT_ASC],
+                    'desc' => ['user.email' => SORT_DESC],
+                    'label' => 'Email'
                 ],
                 /*=============*/
             ]
@@ -75,13 +82,15 @@ class MerchantSearch extends Merchant
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'uid' => $this->uid,
+            //'uid' => $this->uid,
+            'name'=>$this->name,
             'actived_at' => $this->actived_at,
             'weixin_rate' => $this->weixin_rate,
             'alipay_rate' => $this->alipay_rate,
         ]);
 
-        $query->andFilterWhere(['like','user.username', $this->username]) //<=====加入这句
+        $query->andFilterWhere(['like','user.email', $this->email])
+            ->andFilterWhere(['like','user.username', $this->username]) //<=====加入这句
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'actived_code', $this->actived_code])
             ->andFilterWhere(['like', 'category_id', $this->category_id])
@@ -89,7 +98,7 @@ class MerchantSearch extends Merchant
             ->andFilterWhere(['like', 'prov', $this->prov])
             ->andFilterWhere(['like', 'city', $this->city])
             ->andFilterWhere(['like', 'dist', $this->dist])
-            ->andFilterWhere(['like', 'adress', $this->adress])
+            ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'weixinpubid', $this->weixinpubid])
             ->andFilterWhere(['like', 'weixinsellerid', $this->weixinsellerid])
             ->andFilterWhere(['like', 'lisences', $this->lisences])

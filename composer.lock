@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "017f148d9a5e67bdfa564dfd1c77d866",
+    "content-hash": "7479b8df12044872477f4bd318f2b6ef",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -2257,6 +2257,33 @@
                 "mailer"
             ],
             "time": "2017-02-13T07:52:53+00:00"
+        },
+        {
+            "name": "yidashi/yii2-webuploader",
+            "version": "v1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yidashi/yii2-webuploader.git",
+                "reference": "196a7bfe3c1a28af08f86f128bbb4c39e4a7f14f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/yidashi/yii2-webuploader/196a7bfe3c1a28af08f86f128bbb4c39e4a7f14f.zip",
+                "reference": "196a7bfe3c1a28af08f86f128bbb4c39e4a7f14f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "yidashi\\webuploader\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "yii2-webuploader",
+            "time": "2016-07-14T11:02:43+00:00"
         },
         {
             "name": "yiisoft/yii2",

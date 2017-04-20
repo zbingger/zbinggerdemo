@@ -122,7 +122,7 @@ class InfoForm extends Model
         $merchant->prov = $this->prov;
         $merchant->city = $this->city;
         $merchant->dist = $this->dist;
-        $merchant->adress = $this->address;
+        $merchant->address = $this->address;
         $merchant->contactor = $this->contactor;
         $merchant->name = $this->name;
         $merchant->category_id = $this->category_id;
